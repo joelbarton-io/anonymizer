@@ -31,29 +31,29 @@ const Account = (function Account() {
       return this;
     },
     firstName() {
-      console.log('User Action: requesting first name.')
+      console.log('User Action: requesting first name.');
       secure.validateUserAction();
       return `First name: ${user.firstName}`;
     },
     lastName() {
-      console.log('User Action: requesting last name.')
+      console.log('User Action: requesting last name.');
       secure.validateUserAction();
       return `Last name: ${user.lastName}`;
     },
     email() {
-      console.log('User Action: requesting email address.')
+      console.log('User Action: requesting email address.');
       secure.validateUserAction();
       return `Email Address: ${user.email}`;
     },
     reanonymize() {
-      console.log('User Action: requesting new display name.')
+      console.log('User Action: requesting new display name.');
       secure.validateUserAction();
       this.displayName = anonymizer();
       console.log(`Display name successfully updated to: ${this.displayName}`);
       return true;
     },
     resetPassword() {
-      console.log('User Action: requesting a password reset.')
+      console.log('User Action: requesting a password reset.');
       secure.validateUserAction();
       secure.updatePassword();
       console.log('User Action Successful: Updated Password');
