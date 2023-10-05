@@ -1,8 +1,11 @@
-const User = require('./user');
-const Secure = require('./security');
+/* eslint-disable no-console */
 
-const Account = (function () {
-  function anonymizer(length = 16) {
+import User from './user';
+import Secure from './security';
+
+const Account = (function Account() {
+  function anonymizer() {
+    let length = 16;
     function generateRandom() {
       const POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       return POOL.charAt(Math.floor(Math.random() * POOL.length));
@@ -11,13 +14,13 @@ const Account = (function () {
     const result = [];
     while (length > 0) {
       result.push(generateRandom());
-      length--;
+      length -= 1;
     }
     return result.join('');
   }
 
   let user;
-  let secure; // both private and accessible through closure
+  let secure; // both are private and accessible through closure
 
   return {
     init() {
@@ -55,20 +58,20 @@ const Account = (function () {
       secure.updatePassword();
       console.log('User Action Successful: Updated Password');
       return true;
-    }
-  }
-})();
+    },
+  };
+}());
 
-let fooBar = Object.create(Account).init();
+const fooBar = Object.create(Account).init();
 
-console.log(fooBar.firstName);                     // returns the firstName function
-console.log(fooBar.email);                         // returns the email function
-console.log(fooBar.firstName());                   // logs 'foo'
-console.log(fooBar.firstName());                   // logs 'Invalid Password'
-console.log(fooBar.displayName);                   // logs 16 character sequence
-console.log(fooBar.resetPassword())                // logs 'Invalid Password';
-console.log(fooBar.resetPassword())                // logs true
+console.log(fooBar.firstName); // returns the firstName function
+console.log(fooBar.email); // returns the email function
+console.log(fooBar.firstName()); // logs 'foo'
+console.log(fooBar.firstName()); // logs 'Invalid Password'
+console.log(fooBar.displayName); // logs 16 character sequence
+console.log(fooBar.resetPassword()); // logs 'Invalid Password';
+console.log(fooBar.resetPassword()); // logs true
 
-let displayName = fooBar.displayName;
-console.log(fooBar.reanonymize());                 // logs true
-console.log(displayName === fooBar.displayName);   // logs false
+const { displayName } = fooBar;
+console.log(fooBar.reanonymize()); // logs true
+console.log(displayName === fooBar.displayName); // logs false

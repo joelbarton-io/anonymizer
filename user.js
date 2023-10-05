@@ -1,12 +1,12 @@
-const RL = require('readline-sync');
+import { question } from 'readline-sync';
 
 const User = class {
   constructor() {
-    this.email = RL.question('email: ');
-    this.password = RL.question('password: ');
-    this.firstName = RL.question('firstName: ');
-    this.lastName = RL.question('lastName: ');
+    this.email = question('email: ');
+    this.password = question('password: ');
+    this.firstName = question('firstName: ');
+    this.lastName = question('lastName: ');
   }
-}
+};
 
-module.exports = User;
+export default User;
